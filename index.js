@@ -14,7 +14,7 @@ client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
 if (S(e.message.content).startsWith("--setrank"))
 {
 	var sr = e.message.content.split(" ")[1];
-	console.log(sr);
+	e.message.channel.sendMessage(sr);
 }
 else if (e.message.content == "ping")
 {
