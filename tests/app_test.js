@@ -1,31 +1,14 @@
-var server   = require('../server'),
-    chai     = require('chai'),
-    chaiHTTP = require('chai-http'),
-    should   = chai.should();
+var http = require('http');
+var express = require('express');
+var app = express();
 
-chai.use(chaiHTTP);
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 8080);
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
 
-reqServer = process.env.HTTP_TEST_SERVER || server
+http.createServer(app).listen(app.get('port'), app.get('ip'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
 
-describe('Basic routes tests', function() {
-
-    it('GET to / should return 200', function(done){
-        chai.request(reqServer)
-        .get('/')
-        .end(function(err, res) {
-            res.should.have.status(200);
-            done();
-        })
-
-    })
-
-    it('GET to /pagecount should return 200', function(done){
-        chai.request(reqServer)
-        .get('/pagecount')
-        .end(function(err, res) {
-            res.should.have.status(200);
-            done();
-        })
-
-    })
-})
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
