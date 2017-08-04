@@ -19,4 +19,5 @@ else if (e.message.content == "ping")
 {
 	e.message.channel.sendMessage("pong");
 }
+client.disconnect();
 });
