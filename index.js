@@ -24,4 +24,4 @@ else if (e.message.content == "ping")
 	e.message.channel.sendMessage("pong");
 }
 });
- }).listen(5000);
+ }).listen(process.env.PORT);
