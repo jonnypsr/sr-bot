@@ -12,6 +12,10 @@
     "test": "node tests/app_test.js",
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jonnypsr/sr-bot.git"
+  },
   "author": "",
   "license": "ISC"
 }
