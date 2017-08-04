@@ -1,4 +1,5 @@
 var Discordie = require("discordie");
+var S = require('string');
 var Events = Discordie.Events;
 
 var client = new Discordie();
@@ -10,6 +11,14 @@ console.log("Connected as: " + client.User.username);
 });
 
 client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
-if (e.message.content == "ping")
+if (S(e.message.content).startsWith("--setrank"))
+{
+	var sr = e.message.content.split(" ")[1];
+	console.log(sr);
+}
+else if (e.message.content == "ping")
+{
+	
+}
 e.message.channel.sendMessage("pong");
 });
