@@ -18,7 +18,6 @@ if (S(e.message.content).startsWith("--setrank"))
 }
 else if (e.message.content == "ping")
 {
-	
+	e.message.channel.sendMessage("pong");
 }
-e.message.channel.sendMessage("pong");
 });
