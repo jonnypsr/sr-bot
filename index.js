@@ -1,6 +1,9 @@
 var Discordie = require("discordie");
 var S = require('string');
 var Events = Discordie.Events;
+var http = require('http');
+
+ http.createServer(function (request, response) {
 
 var client = new Discordie();
 
@@ -21,3 +24,4 @@ else if (e.message.content == "ping")
 	e.message.channel.sendMessage("pong");
 }
 });
+ }).listen(5000);
