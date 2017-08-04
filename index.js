@@ -1,21 +1,27 @@
-var Discord = require("discordjs");
+var Discordie = require("discordie");
 var S = require('string');
+var Events = Discordie.Events;
 var http = require('http');
 
  http.createServer(function (request, response) {
 
-var client = new Discord.Client();
+var client = new Discordie();
 
-client.login("MzQyOTE2ODA4MTk1NTcxNzEz.DGWl3Q.pOKLqyCMRcru7OFWBVFwkvoOwpE");
+client.connect({ token: "MzQyOTE2ODA4MTk1NTcxNzEz.DGWl3Q.pOKLqyCMRcru7OFWBVFwkvoOwpE" });
 
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+client.Dispatcher.on(Events.GATEWAY_READY, e => {
+console.log("Connected as: " + client.User.username);
 });
 
-client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
-  }
+client.Dispatcher.on(Events.MESSAGE_CREATE, e => {
+if (S(e.message.content).startsWith("--setrank"))
+{
+	var sr = e.message.content.split(" ")[1];
+	e.message.channel.sendMessage(sr);
+}
+else if (e.message.content == "ping")
+{
+	e.message.channel.sendMessage("pong");
+}
 });
-
  }).listen(process.env.PORT);
