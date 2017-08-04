@@ -9,7 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node tests/app_test.js",
+    "test": "node app_test.js",
     "start": "node index.js"
   },
   "repository": {
